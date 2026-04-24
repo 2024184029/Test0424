@@ -37,6 +37,8 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components");
 	TObjectPtr<UCameraComponent> Camera;
 
+
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input");
 	TObjectPtr<UInputAction> IA_Move;
 
@@ -46,10 +48,23 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> IA_Jump;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> IA_Lean;
+
+
+	UFUNCTION(Exec)
+	void BigHead();
+
+	// Jump는 기본구현 함수
 	void Move(const FInputActionValue& Value); // "InputAction.h" 선언 필요
 
 	void Look(const FInputActionValue& Value);
 
-	// Jump는 기본구현 함수
+	void Lean(const FInputActionValue& Value);
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat")
+	float TargetLeanAngle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat")
+	uint8 bIsBigHead : 1 = false;
 };
